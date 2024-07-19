@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }: Props) => {
       <div className="md:pl-48">
         <Header />
       </div>
-      <main className="md:pl-48 py-24 max-w-7xl">{children}</main>
+      <main className="md:pl-48 py-24 max-w-7xl h-full">{children}</main>
     </div>
   );
 };

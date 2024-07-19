@@ -8,9 +8,9 @@ export const SIDEBAR_LINKS = [
     color: "text-blue-500",
   },
   {
-    label: "Overview",
+    label: "Forms",
     icon: LineChart,
-    href: "/",
+    href: "/forms",
     color: "text-blue-500",
   },
 ];

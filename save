@@ -1,0 +1,22 @@
+///
+const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  if (event.key === "Enter" || event.key === "Escape") {
+    onSubmit(editingValue);
+    //@ts-ignore
+    event.target.blur();
+  }
+};
+
+const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const target = event.target as HTMLInputElement;
+  if (target.value.trim() === "") {
+    setEditingValue(value);
+  } else {
+    setValue(target.value);
+  }
+};
+
+const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+  const target = event.target as HTMLInputElement;
+  target.select();
+};

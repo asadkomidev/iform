@@ -26,7 +26,7 @@ const UserMenu = async (props: Props) => {
         align="end"
         className="border-none w-48 rounded-xl p-4 shadow-xl">
         <DropdownMenuItem asChild>
-          <Link href="/dashboard" className="">
+          <Link href="/overview" className="">
             <span>Dashboard</span>
           </Link>
         </DropdownMenuItem>
