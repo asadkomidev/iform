@@ -7,7 +7,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from "@/components/props-sheet";
 
 import { Elements } from "../../core";
 import { useOpen } from "../hooks/use-open";

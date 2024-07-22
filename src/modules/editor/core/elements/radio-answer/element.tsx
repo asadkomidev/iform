@@ -5,6 +5,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { CustomInstance } from "./common";
+import ElementContentWrapper from "../../components/element-content-wrapper";
+import { RiRadioButtonLine } from "react-icons/ri";
 
 type Props = {
   element: ElementInstance;
@@ -14,25 +16,22 @@ const Element = ({ element }: Props) => {
   const items = element as CustomInstance;
   const { question, required, options, instructions } = items.attributes;
   return (
-    <div className="flex flex-col w-full py-4">
-      <Label className="pb-2 text-lg">
-        {question || "Single choice question"}
-        {required && "*"}
-      </Label>
-
-      {options.length === 0 ? (
-        <div className="">
-          <p className="text-xs text-muted-foreground">
-            This is a choose one answer question.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4 text-muted-foreground">
+    <div className="flex flex-col  w-full">
+      <div className="">
+        <span className="text-[10px] text-muted-foreground/50 flex items-center gap-1">
+          <RiRadioButtonLine className="size-3" /> Single Choice
+        </span>
+      </div>
+      <ElementContentWrapper
+        question={question}
+        instructions={instructions}
+        required={required}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted-foreground">
           {options.map((option, i) => (
             <RadioGroup
               disabled
               key={`option-${i}`}
-              className="flex items-start text-muted-foreground">
+              className="flex items-start text-muted-foreground pl-5">
               <RadioGroupItem
                 disabled
                 value={option}
@@ -45,13 +44,7 @@ const Element = ({ element }: Props) => {
             </RadioGroup>
           ))}
         </div>
-      )}
-
-      {instructions && (
-        <p className=" text-muted-foreground/50 text-[0.8rem]">
-          {instructions}
-        </p>
-      )}
+      </ElementContentWrapper>
     </div>
   );
 };

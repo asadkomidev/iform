@@ -1,10 +1,10 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  question: "Question",
-  instructions: "Instructions",
+  question: "",
+  instructions: "",
   required: false,
-  placeHolder: "Answer",
+  placeHolder: "",
 };
 
 export type CustomInstance = ElementInstance & {

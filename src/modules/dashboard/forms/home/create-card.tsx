@@ -1,22 +1,16 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { createFormAction } from "@/actions/form-actions";
-import { formSchema, formSchemaType } from "@/modules/common/schema";
 
 type Props = {};
 
-const CreateFormCard = (props: Props) => {
+export default function CreateCard({}: Props) {
   const router = useRouter();
-  const form = useForm<formSchemaType>({
-    resolver: zodResolver(formSchema),
-  });
 
   async function onClick() {
     const values = {
@@ -43,6 +37,4 @@ const CreateFormCard = (props: Props) => {
       </p>
     </Button>
   );
-};
-
-export default CreateFormCard;
+}

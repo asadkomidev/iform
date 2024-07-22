@@ -2,9 +2,11 @@
 
 import { ElementInstance } from "@/types/elements/instances";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
 import { CustomInstance } from "./common";
+import ElementContentWrapper from "../../components/element-content-wrapper";
+import { Input } from "@/components/ui/input";
+import { MdShortText } from "react-icons/md";
 
 type Props = {
   element: ElementInstance;
@@ -12,24 +14,26 @@ type Props = {
 
 const Element = ({ element }: Props) => {
   const items = element as CustomInstance;
-  const { question, required, placeHolder, instructions } = items.attributes;
+  const { question, required, instructions } = items.attributes;
   return (
-    <div className="flex flex-col w-full">
-      <Label className="pb-2">
-        {question || "Question"}
-        {required && "*"}
-      </Label>
-      <Input
-        readOnly
-        disabled
-        placeholder={placeHolder}
-        className="shadow-none"
-      />
-      {instructions && (
-        <p className=" text-muted-foreground/50 text-[0.8rem]">
-          {instructions}
-        </p>
-      )}
+    <div className="flex flex-col  w-full">
+      <div className="">
+        <span className="text-[10px] text-muted-foreground/50 flex items-center gap-1">
+          <MdShortText className="size-3" /> Short Answer
+        </span>
+      </div>
+      <ElementContentWrapper
+        question={question}
+        instructions={instructions}
+        required={required}>
+        <div className="pl-5">
+          <Input
+            disabled
+            placeholder="Short Answer"
+            className="w-full shadow-none"
+          />
+        </div>
+      </ElementContentWrapper>
     </div>
   );
 };

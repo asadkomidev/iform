@@ -21,7 +21,7 @@ const ElementToDrop = ({ top, bottom, element, mouseIsOver }: Props) => {
       )}
       <div
         className={cn(
-          "flex w-full min-h-[120px] items-center rounded-lg  px-4 py-2 pointer-events-none opacity-100 bg-background border translate-all transition ease-in-out duration-400",
+          "flex w-full min-h-[120px] items-center rounded-lg  px-4 py-2 pointer-events-none opacity-100 bg-background border translate-all transition ease-in-out duration-400 ",
           mouseIsOver && "opacity-100 border-l-primary "
         )}>
         <Element element={element} />

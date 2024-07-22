@@ -1,7 +1,7 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  question: "Pick a date question",
+  question: "",
   instructions: "",
   required: false,
 };

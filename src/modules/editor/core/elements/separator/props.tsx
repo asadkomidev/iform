@@ -1,64 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { ElementInstance } from "@/types/elements/instances";
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-import { CustomInstance } from "./common";
-
-import useElement from "@/hooks/use-element";
-import {
-  ParagraphPropsSchemaType,
-  paragraphPropsSchema,
-} from "../../schemas/paragraph";
-import { Textarea } from "@/components/ui/textarea";
+import { CircleHelp } from "lucide-react";
 
 type Prop = {
   element: ElementInstance;
 };
 
 const Props = ({ element }: Prop) => {
-  const { updateElement } = useElement();
-
-  const items = element as CustomInstance;
-  const { heading } = items.attributes;
-
-  const form = useForm<ParagraphPropsSchemaType>({
-    resolver: zodResolver(paragraphPropsSchema),
-    mode: "onBlur",
-    defaultValues: {
-      paragraph: heading,
-    },
-  });
-
-  useEffect(() => {
-    form.reset(items.attributes);
-  }, [items, form]);
-
-  function applyChanges(values: ParagraphPropsSchemaType) {
-    const { paragraph } = values;
-    updateElement(element.id, {
-      ...element,
-      attributes: {
-        paragraph,
-      },
-    });
-  }
-
-  return <p>No properties for this element</p>;
+  return (
+    <div className="border rounded-lg p-4">
+      <span className="flex items-center gap-2 pb-2 text-sm">
+        <CircleHelp className="size-4 text-primary" />
+        <span className="">Note</span>
+      </span>
+      <p className="text-muted-foreground text-sm leading-6">
+        The separator element is used to separate different sections of the
+        content. It is a simple horizontal line that can be used to visually
+        separate different sections of the content.
+      </p>
+    </div>
+  );
 };
 
 export default Props;

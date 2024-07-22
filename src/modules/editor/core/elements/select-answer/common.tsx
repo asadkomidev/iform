@@ -1,10 +1,10 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  question: "Dropdown question",
+  question: "",
   instructions: "",
   required: false,
-  placeHolder: "Answer",
+  placeHolder: "",
   options: ["Option 1"],
 };
 

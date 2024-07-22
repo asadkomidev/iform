@@ -19,7 +19,7 @@ const CSVDownload = ({ datas, columns }: Props) => {
         separator=";"
         datas={datas}
         columns={columns}>
-        <Button size="sm" className="flex items-center gap-2">
+        <Button size="sm" className="flex items-center gap-2 shadow-none">
           <Download className="size-4" />
           <span className="hidden md:flex">Export CSV</span>
         </Button>

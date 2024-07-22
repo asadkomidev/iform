@@ -62,16 +62,16 @@ const Canvas = ({ form }: Props) => {
 
   return (
     <DndContext sensors={sensors}>
-      <div className="p-4 relative h-[calc(100vh-100px)] overflow-hidden ">
-        <div className="flex flex-col md:absolute md:left-4 z-30 pb-8 md:pb-0">
+      <div className="px-1 relative h-[calc(100vh-80px)] overflow-hidden rounded-lg ">
+        <div className="flex flex-col md:absolute md:left-2 z-30 px-3 pt-2 md:pt-4">
           <ControlsWidget />
           <FieldsWidget />
         </div>
 
-        <div className="flex flex-col md:absolute md:right-4 z-30 pb-8 md:pb-0">
+        <div className="flex flex-col md:absolute md:right-4 z-30 md:pb-0">
           <PropsWidget />
         </div>
-        <div className="  h-[calc(100vh-140px)]  overflow-y-scroll no-scrollbar">
+        <div className="px-2 pt-4 h-[calc(100vh-80px)] rounded-lg  overflow-y-scroll no-scrollbar ">
           <Title form={form} />
           <DropArea form={form} />
         </div>

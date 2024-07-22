@@ -1,7 +1,7 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  paragraph: "Paragraph",
+  paragraph: "",
 };
 
 export type CustomInstance = ElementInstance & {

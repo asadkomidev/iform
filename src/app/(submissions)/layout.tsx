@@ -4,8 +4,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col min-h-screen w-full bg-muted">
-      <main className="flex w-full flex-grow bg-muted">{children}</main>
+    <div className="bg-muted min-h-screen fixed inset-0 top-0 bottom-0 left-0 right-0">
+      {children}
     </div>
   );
 }

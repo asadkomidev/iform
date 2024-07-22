@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Keyboard } from "lucide-react";
@@ -10,6 +11,8 @@ import FormDescription from "./form-description";
 import { useUpdateTitle } from "./hooks/use-update-title";
 import { useUpdateDescription } from "./hooks/use-update-description";
 import { useOpen } from "../hooks/use-open";
+import { useAnimate, motion } from "framer-motion";
+import { useEffect } from "react";
 
 type Props = {
   form: FormType;
@@ -20,13 +23,32 @@ const Title = ({ form }: Props) => {
   const { onUpdateTitle, setTitle } = useUpdateTitle(form);
   const { onUpdateDescription, setDescription } = useUpdateDescription(form);
 
+  const [scope, animate] = useAnimate();
+
+  useEffect(() => {
+    if (open) {
+      const slideAnimation = async () => {
+        await animate(scope.current, {
+          x: 0,
+          transition: {
+            duration: 0.3,
+          },
+        });
+      };
+
+      slideAnimation();
+    }
+  }, [open]);
+
   return (
-    <div
+    <motion.div
+      ref={scope}
+      layout
       className={cn(
-        "shadow-none  md:mt-12 ",
+        "shadow-none mt-6 md:mt-12 px-1",
         open ? "md:ml-28 md:max-w-2xl " : "max-w-3xl mx-auto"
       )}>
-      <div className="h-[130px] border mx-2 rounded-lg py-4 bg-background md:px-1 relative">
+      <div className="h-[130px] border rounded-lg py-4 bg-background md:px-1 relative">
         <FormTitle
           title={form.title}
           setTitle={setTitle}
@@ -44,7 +66,7 @@ const Title = ({ form }: Props) => {
           to save
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

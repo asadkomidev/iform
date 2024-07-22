@@ -16,6 +16,7 @@ import {
 
 import { CustomInstance } from "./common";
 import { SelectAnswerElement } from ".";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -36,11 +37,11 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col gap-2 w-full ">
-      <Label className={cn("text-lg", error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
       <div className="">
         <Select
           defaultValue={value}
@@ -52,7 +53,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
             submitFunction(element.id, value);
           }}>
           <SelectTrigger
-            className={cn("w-1/2 shadow-none", error && "border-red-500")}>
+            className={cn("md:w-1/2 shadow-none", error && "border-red-500")}>
             <SelectValue placeholder={options[0]} />
           </SelectTrigger>
           <SelectContent>
@@ -64,16 +65,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
           </SelectContent>
         </Select>
       </div>
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    </ElementContentWrapper>
   );
 };
 

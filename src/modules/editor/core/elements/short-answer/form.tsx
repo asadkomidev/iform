@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import { CustomInstance } from "./common";
 import { ShortAnswerElement } from ".";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -30,34 +31,27 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col gap-2 w-full ">
-      <Label className={cn(error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
-      <Input
-        className={cn("shadow-none", error && "border-red-500")}
-        placeholder={placeHolder}
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
-          if (!submitFunction) return;
-          const valid = ShortAnswerElement.validate(element, e.target.value);
-          setError(!valid);
-          if (!valid) return;
-          submitFunction(element.id, e.target.value);
-        }}
-        value={value}
-      />
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
+      <div className="">
+        <Input
+          className={cn("shadow-none", error && "border-red-500")}
+          placeholder={placeHolder}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={(e) => {
+            if (!submitFunction) return;
+            const valid = ShortAnswerElement.validate(element, e.target.value);
+            setError(!valid);
+            if (!valid) return;
+            submitFunction(element.id, e.target.value);
+          }}
+          value={value}
+        />
+      </div>
+    </ElementContentWrapper>
   );
 };
 

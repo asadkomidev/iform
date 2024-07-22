@@ -68,7 +68,7 @@ const Props = ({ element }: Prop) => {
           name="heading"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Heading</FormLabel>
+              <FormLabel>Title</FormLabel>
               <FormControl>
                 <Input
                   className="shadow-none"

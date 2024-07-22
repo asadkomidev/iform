@@ -13,7 +13,9 @@ const Form = ({ element }: Props) => {
 
   return (
     <div className="flex flex-col gap-2 w-full ">
-      <p className=" text-muted-foreground">{paragraph}</p>
+      <p className="text-base text-muted-foreground">
+        {paragraph || "Add a paragraph"}
+      </p>
     </div>
   );
 };

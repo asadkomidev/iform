@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { RadioAnswerElement } from ".";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -30,11 +31,11 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col w-full ">
-      <Label className={cn("text-lg", error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
       <RadioGroup
         className=""
         defaultValue={value}
@@ -45,7 +46,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
           setError(!valid);
           submitFunction(element.id, value);
         }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted-foreground">
           {options.map((option, i) => (
             <div key={i} className="flex items-center gap-2">
               <RadioGroupItem value={option} />
@@ -54,16 +55,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
           ))}
         </div>
       </RadioGroup>
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    </ElementContentWrapper>
   );
 };
 

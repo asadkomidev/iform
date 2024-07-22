@@ -6,9 +6,9 @@ import { ElementInstance } from "@/types/elements/instances";
 import { SubmitFunction } from "@/types/elements/functions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 
 import { CustomInstance } from "./common";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -42,35 +42,25 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
     submitFunction(element.id, updatedValue.join(", "));
   };
   return (
-    <div className="flex flex-col w-full ">
-      <Label className={cn("text-lg", error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 text-muted-foreground">
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-muted-foreground">
         {options.map((option, i) => (
           <div
             key={`unique-id-${i}` + option}
-            className="flex items-start gap-2">
+            className="flex items-center gap-2">
             <Checkbox
               checked={value.includes(option)}
               onCheckedChange={() => onCheckedChange(option)}
             />
-            <Label className="ml-2">{option}</Label>
+            <Label className="font-normal">{option}</Label>
           </div>
         ))}
       </div>
-
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    </ElementContentWrapper>
   );
 };
 

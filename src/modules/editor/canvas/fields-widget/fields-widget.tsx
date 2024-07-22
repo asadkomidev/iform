@@ -17,7 +17,7 @@ const FieldsWidget = (props: Props) => {
           <FieldButton element={Elements.NumberAnswer} />
           <FieldButton element={Elements.DateAnswer} />
           <FieldButton element={Elements.SelectAnswer} />
-          <FieldButton element={Elements.CheckboxAnswer} />
+          {/* <FieldButton element={Elements.CheckboxAnswer} /> */}
           <FieldButton element={Elements.RadioAnswer} />
           <FieldButton element={Elements.MultipleAnswer} />
         </div>

@@ -6,7 +6,11 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 
-function ShareButton({ shareUrl }: { shareUrl: string }) {
+type Props = {
+  url: string;
+};
+
+export default function ShareButton({ url }: Props) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -16,11 +20,11 @@ function ShareButton({ shareUrl }: { shareUrl: string }) {
   if (!mounted) {
     return null;
   }
-  const shareLink = `${window.location.origin}/form/${shareUrl}`;
+  const shareLink = `${window.location.origin}/form/${url}`;
   return (
     <div className="flex flex-grow gap-4 items-center">
       <Button
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 shadow-none"
         size="sm"
         onClick={() => {
           navigator.clipboard.writeText(shareLink);
@@ -32,5 +36,3 @@ function ShareButton({ shareUrl }: { shareUrl: string }) {
     </div>
   );
 }
-
-export default ShareButton;

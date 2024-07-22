@@ -86,35 +86,38 @@ const FormSubmit = ({ form, content, url }: Props) => {
   }
 
   return (
-    <div className="flex justify-center w-full min-h-[60vh] items-center px-4 ">
+    <div className="w-full relative flex mx-auto items-center justify-center  overflow-y-scroll h-full pb-32">
       <div
         key={renderKey}
-        className="md:max-w-[620px] flex flex-col gap-4 flex-grow bg-background w-full p-4 overflow-y-auto border shadow-lg rounded-lg">
-        <div className="pb-8">
-          <h1 className="text-2xl font-bold">{form.title}</h1>
-          <p className="text-muted-foreground">{form.description}</p>
+        className="md:max-w-3xl w-full absolute top-32 pb-32 px-4">
+        <div className="flex flex-col gap-4 bg-background w-full  px-4 py-8  border  shadow-lg rounded-lg">
+          <div className="pb-8">
+            <h1 className="text-2xl font-bold">{form.title}</h1>
+            <p className="text-muted-foreground">{form.description}</p>
+          </div>
+          {content.map((element, i) => {
+            const Element = Elements[element.type].form;
+            return (
+              <Element
+                key={`id-${i}` + element.id}
+                element={element}
+                submitFunction={submitValue}
+                isInvalid={formErrors.current[element.id]}
+                defaultValue={formValues.current[element.id]}
+              />
+            );
+          })}
+
+          <Button
+            className="mt-8"
+            onClick={() => {
+              startTransition(submitForm);
+            }}
+            disabled={pending}>
+            {!pending && <>Submit</>}
+            {pending && <Loader2 className="animate-spin" />}
+          </Button>
         </div>
-        {content.map((element, i) => {
-          const Element = Elements[element.type].form;
-          return (
-            <Element
-              key={`id-${i}` + element.id}
-              element={element}
-              submitFunction={submitValue}
-              isInvalid={formErrors.current[element.id]}
-              defaultValue={formValues.current[element.id]}
-            />
-          );
-        })}
-        <Button
-          className="mt-8"
-          onClick={() => {
-            startTransition(submitForm);
-          }}
-          disabled={pending}>
-          {!pending && <>Submit</>}
-          {pending && <Loader2 className="animate-spin" />}
-        </Button>
       </div>
     </div>
   );

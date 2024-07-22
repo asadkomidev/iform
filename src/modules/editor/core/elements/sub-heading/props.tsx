@@ -70,7 +70,7 @@ const Props = ({ element }: Prop) => {
           name="subHeading"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Sub Heading</FormLabel>
+              <FormLabel>Sub Title</FormLabel>
               <FormControl>
                 <Input
                   className="shadow-none"

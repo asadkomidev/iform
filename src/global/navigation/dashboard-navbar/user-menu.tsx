@@ -24,7 +24,7 @@ const UserMenu = async (props: Props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="border-none w-48 rounded-xl p-4 shadow-xl">
+        className=" w-48 rounded-xl p-4 shadow-xl mt-1">
         <DropdownMenuItem asChild>
           <Link href="/overview" className="">
             <span>Dashboard</span>

@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-function VisitButton({ shareUrl }: { shareUrl: string }) {
+type Props = {
+  url: string;
+};
+
+export default function VisitButton({ url }: Props) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -14,18 +18,16 @@ function VisitButton({ shareUrl }: { shareUrl: string }) {
     return null;
   }
 
-  const shareLink = `${window.location.origin}/form/${shareUrl}`;
+  const visitUrl = `${window.location.origin}/form/${url}`;
   return (
     <Button
       className="w-24"
       variant="outline"
       size="sm"
       onClick={() => {
-        window.open(shareLink, "_blank");
+        window.open(visitUrl, "_blank");
       }}>
       Visit
     </Button>
   );
 }
-
-export default VisitButton;

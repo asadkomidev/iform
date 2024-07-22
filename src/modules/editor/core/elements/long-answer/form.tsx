@@ -9,6 +9,7 @@ import { SubmitFunction } from "@/types/elements/functions";
 import { cn } from "@/lib/utils";
 import { LongAnswerElement } from ".";
 import { Textarea } from "@/components/ui/textarea";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -29,34 +30,27 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col gap-2 w-full my-4">
-      <Label className={cn(error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
-      <Textarea
-        className={cn("shadow-none", error && "border-red-500")}
-        placeholder={placeHolder}
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
-          if (!submitFunction) return;
-          const valid = LongAnswerElement.validate(element, e.target.value);
-          setError(!valid);
-          if (!valid) return;
-          submitFunction(element.id, e.target.value);
-        }}
-        value={value}
-      />
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
+      <div className="">
+        <Textarea
+          className={cn("shadow-none", error && "border-red-500")}
+          placeholder={placeHolder}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={(e) => {
+            if (!submitFunction) return;
+            const valid = LongAnswerElement.validate(element, e.target.value);
+            setError(!valid);
+            if (!valid) return;
+            submitFunction(element.id, e.target.value);
+          }}
+          value={value}
+        />
+      </div>
+    </ElementContentWrapper>
   );
 };
 

@@ -16,7 +16,7 @@ const Editor = async ({ id }: Props) => {
   return (
     <div className="max-w-7xl mx-auto bg-background rounded-lg border shadow-sm h-[calc(100vh-30px)]">
       <Header form={form} />
-      <div className="h-[calc(100vh-80px)] bg-muted">
+      <div className="h-[calc(100vh-80px)] bg-muted rounded-bl-lg rounded-br-lg">
         <Canvas form={form} />
       </div>
     </div>

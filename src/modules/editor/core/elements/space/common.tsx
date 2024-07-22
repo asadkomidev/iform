@@ -1,7 +1,7 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  height: 20,
+  height: 24,
 };
 
 export type CustomInstance = ElementInstance & {

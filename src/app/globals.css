@@ -39,6 +39,15 @@ body,
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --chart-1: 359 2% 90%;
+    --chart-2: 240 1% 74%;
+    --chart-3: 240 1% 58%;
+    --chart-4: 240 1% 42%;
+    --chart-5: 240 2% 26%;
+    --chart-6: 240 2% 13%;
+    --chart-7: 240 2% 22%;
+    --chart-8: 240 2% 32%;
   }
 
   .dark {
@@ -69,6 +78,12 @@ body,
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --chart-1: 359 2% 90%;
+    --chart-2: 240 1% 74%;
+    --chart-3: 240 1% 58%;
+    --chart-4: 240 1% 42%;
+    --chart-5: 240 2% 26%;
   }
 }
 
@@ -88,4 +103,37 @@ body,
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* @media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html,
+  body {
+    height: initial !important;
+    overflow: initial !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media print {
+  .page-break {
+    margin-top: 10rem;
+
+    display: block;
+    page-break-before: auto;
+  }
+} */
+
+@page {
+  size: auto;
+  margin-top: 20mm;
+  margin-left: 20mm;
+  margin-right: 20mm;
+  margin-bottom: 20mm;
 }

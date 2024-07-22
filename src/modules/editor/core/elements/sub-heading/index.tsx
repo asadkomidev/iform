@@ -23,7 +23,7 @@ export const SubHeadingElement: FormElementType = {
   props: Props,
   elementButton: {
     icon: LucideHeading2,
-    label: "Sub Heading",
+    label: "Sub Title",
   },
 
   validate: () => true,

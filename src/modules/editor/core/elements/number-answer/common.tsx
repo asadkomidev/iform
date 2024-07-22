@@ -1,7 +1,7 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  question: "Enter a number question",
+  question: "",
   instructions: "",
   required: false,
   placeHolder: "0",

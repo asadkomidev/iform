@@ -15,7 +15,7 @@ const Form = ({ element }: Props) => {
 
   return (
     <div className="flex flex-col gap-2 w-full ">
-      <Label className="text-2xl">{heading}</Label>
+      <Label className="text-2xl font-bold">{heading || "Add a title"}</Label>
     </div>
   );
 };

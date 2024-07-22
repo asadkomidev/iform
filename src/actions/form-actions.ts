@@ -2,11 +2,9 @@
 
 import { db } from "@/backend/database";
 import { formSubmissions, forms } from "@/backend/database/schema";
-import { FormType } from "@/backend/database/types";
 import { getAuthUser } from "@/backend/utilities/utils";
 import { FORM_PER_PAGE } from "@/global/constants/constants";
-import { generateRandomID } from "@/lib/utils";
-import { formSchema, formSchemaType } from "@/modules/common/schema";
+import { formSchema, formSchemaType } from "@/schemas/form-schema";
 import { and, desc, eq, ilike, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 

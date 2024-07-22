@@ -24,7 +24,7 @@ const ElementWrapper = ({ element }: Props) => {
       ref={data?.draggable?.setNodeRef}
       {...data?.draggable.listeners}
       {...data?.draggable.attributes}
-      className="relative min-h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset"
+      className="relative min-h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset "
       onMouseEnter={() => {
         data?.setMouseIsOver(true);
       }}

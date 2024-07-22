@@ -1,7 +1,7 @@
 import { ElementInstance } from "@/types/elements/instances";
 
 export const attributes = {
-  heading: "Heading",
+  heading: "",
 };
 
 export type CustomInstance = ElementInstance & {

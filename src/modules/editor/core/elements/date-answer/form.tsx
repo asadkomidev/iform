@@ -18,6 +18,7 @@ import {
 
 import { CustomInstance } from "./common";
 import { DateAnswerElement } from ".";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -41,17 +42,17 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col gap-2 w-full my-4">
-      <Label className={cn("text-lg", error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
       <Popover>
         <PopoverTrigger asChild className="shadow-none">
           <Button
             variant={"outline"}
             className={cn(
-              "w-full  md:w-64 justify-start text-left font-normal",
+              "w-full  md:w-1/2 justify-start text-left font-normal",
               !date && "text-muted-foreground",
               error && "border-red-500"
             )}>
@@ -76,16 +77,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
           />
         </PopoverContent>
       </Popover>
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    </ElementContentWrapper>
   );
 };
 

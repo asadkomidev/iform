@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import { CustomInstance } from "./common";
 import { NumberAnswerElement } from ".";
+import ElementContentWrapper from "../../components/element-content-wrapper";
 
 type Props = {
   element: ElementInstance;
@@ -30,12 +31,12 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
   }, [isInvalid]);
 
   return (
-    <div className="flex flex-col gap-2 w-full my-4">
-      <Label className={cn("text-lg", error && "text-red-500")}>
-        {question}
-        {required && "*"}
-      </Label>
-      <div className="w-1/2 py-2">
+    <ElementContentWrapper
+      isForm
+      question={question}
+      instructions={instructions}
+      required={required}>
+      <div className="md:w-1/2 ">
         <Input
           type="number"
           className={cn("shadow-none", error && "border-red-500")}
@@ -51,16 +52,7 @@ const Form = ({ element, submitFunction, isInvalid, defaultValue }: Props) => {
           value={value}
         />
       </div>
-      {instructions && (
-        <p
-          className={cn(
-            "text-muted-foreground text-xs",
-            error && "text-red-500"
-          )}>
-          {instructions}
-        </p>
-      )}
-    </div>
+    </ElementContentWrapper>
   );
 };
 

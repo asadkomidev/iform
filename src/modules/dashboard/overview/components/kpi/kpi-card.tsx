@@ -39,7 +39,7 @@ const KpiCard = ({
         <div className="text-xs text-muted-foreground">{description}</div>
       </CardContent>
       <CardFooter>
-        <Progress value={25} aria-label="25% increase" />
+        <Progress value={Number(value)} aria-label="25% increase" />
       </CardFooter>
     </Card>
   );

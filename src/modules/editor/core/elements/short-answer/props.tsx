@@ -87,7 +87,7 @@ const Props = ({ element }: Prop) => {
                 />
               </FormControl>
               <FormDescription className="text-xs">
-                Here is the instructions for the user.
+                Write your question here.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -131,7 +131,7 @@ const Props = ({ element }: Prop) => {
                 />
               </FormControl>
               <FormDescription className="text-xs">
-                Write the instructions for the user.
+                Write instructions for the user if any.
               </FormDescription>
               <FormMessage />
             </FormItem>
