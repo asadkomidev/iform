@@ -4,8 +4,10 @@ import { db } from "@/backend/database";
 import { formSubmissions, forms } from "@/backend/database/schema";
 import { getAuthUser } from "@/backend/utilities/utils";
 import { FORM_PER_PAGE } from "@/global/constants/constants";
+import { calculatePercentageChange, fillMissingDays } from "@/lib/utils";
 import { formSchema, formSchemaType } from "@/schemas/form-schema";
-import { and, desc, eq, ilike, sql } from "drizzle-orm";
+import { differenceInDays, parse, subDays } from "date-fns";
+import { and, desc, eq, gte, ilike, lte, sql, sum } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { v4 as uuidv4 } from "uuid";
@@ -60,7 +62,7 @@ export const getFormStatsAction = async (id: string) => {
       submissions: sql`sum(submissions)`.mapWith(Number),
     })
     .from(forms)
-    .where(and(eq(forms.userId, user.id), eq(forms.id, Number(id))));
+    .where(and(eq(forms.userId, user?.id), eq(forms.id, Number(id))));
 
   const visits = stats.visits || 0;
   const submissions = stats.submissions || 0;
@@ -203,6 +205,7 @@ export const updateFormAction = async (id: number, data: string) => {
     .where(and(eq(forms.id, id), eq(forms.userId, user.id)))
     .returning();
 
+  revalidatePath(`/form/[${response.url}]`, "page");
   return response;
 };
 

@@ -10,9 +10,9 @@ type Props = {
 const Editor = async ({ id }: Props) => {
   const form = await getFormAction(id);
 
-  if (form && form.published) {
-    return <Published form={form} />;
-  }
+  // if (form && form.published) {
+  //   return <Published form={form} />;
+  // }
   return (
     <div className="max-w-7xl mx-auto bg-background rounded-lg border shadow-sm h-[calc(100vh-30px)]">
       <Header form={form} />

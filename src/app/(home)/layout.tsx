@@ -12,8 +12,7 @@ export default async function RootLayout({
   return (
     <>
       <Navbar />
-      <Container className="pt-16">{children}</Container>
-      <Footer />
+      <Container className="pt-16 ">{children}</Container>
     </>
   );
 }

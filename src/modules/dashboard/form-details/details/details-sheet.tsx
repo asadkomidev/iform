@@ -18,6 +18,7 @@ import SingleAnswerChartCard from "./single-answer/char-card";
 import SelectAnswerChartCard from "./select-answer/char-card";
 
 import AllAnswers from "./all-answers/all-answers";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   multiAnswer: ChartDataType[];

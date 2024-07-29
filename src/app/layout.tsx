@@ -7,6 +7,8 @@ import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "sonner";
 
 import ElementContextProvider from "@/context/element-context";
+import { Layout } from "@/components/layouts";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +24,19 @@ export default async function RootLayout({
 }>) {
   const { user, isAuth } = await getAuthUser();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <Layout>
       <body className={inter.className} suppressHydrationWarning>
-        <QueryProvider>
-          <ElementContextProvider>{children}</ElementContextProvider>
-          <Toaster offset={"20px"} />
-        </QueryProvider>
+        <ThemeProvider
+          defaultTheme="system"
+          attribute="class"
+          enableSystem
+          disableTransitionOnChange>
+          <QueryProvider>
+            <ElementContextProvider>{children}</ElementContextProvider>
+            <Toaster offset={"20px"} />
+          </QueryProvider>
+        </ThemeProvider>
       </body>
-    </html>
+    </Layout>
   );
 }

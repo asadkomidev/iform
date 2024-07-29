@@ -12,7 +12,9 @@ import {
 
 export const useConfirm = (
   title: string,
-  message: string
+  message: string,
+  isOpen?: boolean,
+  setIsOpen?: (value: boolean) => void
 ): [() => JSX.Element, () => Promise<unknown>] => {
   const [promise, setPromise] = useState<{
     resolve: (value: boolean) => void;
@@ -25,6 +27,7 @@ export const useConfirm = (
 
   const handleClose = () => {
     setPromise(null);
+    setIsOpen && setIsOpen(false);
   };
 
   const handleConfirm = () => {

@@ -17,7 +17,7 @@ async function getFormWithSubmissions(formId: number) {
   return await getFormWithSubmissionsAction(formId);
 }
 
-function parseFormContent(content: string | null): ElementInstance[] {
+export function parseFormContent(content: string | null): ElementInstance[] {
   return content ? (JSON.parse(content) as ElementInstance[]) : [];
 }
 
@@ -92,15 +92,24 @@ export async function getQuestionResponses(
 export const generateRandomBlueVariantChartColors = () => {
   // define a blue color palette and return a random color from the palette use the hsl color format
   const colors = [
+    "hsl(210, 100%, 95%)",
     "hsl(210, 100%, 90%)",
+    "hsl(210, 100%, 85%)",
     "hsl(210, 100%, 80%)",
+    "hsl(210, 100%, 75%)",
     "hsl(210, 100%, 70%)",
+    "hsl(210, 100%, 65%)",
     "hsl(210, 100%, 60%)",
+    "hsl(210, 100%, 55%)",
     "hsl(210, 100%, 50%)",
+    "hsl(210, 100%, 45%)",
     "hsl(210, 100%, 40%)",
-    "hsl(210, 100%, 30%)",
-    "hsl(210, 100%, 20%)",
-    "hsl(210, 100%, 10%)",
+    // "hsl(210, 100%, 35%)",
+    // "hsl(210, 100%, 30%)",
+    // "hsl(210, 100%, 25%)",
+    // "hsl(210, 100%, 20%)",
+    // "hsl(210, 100%, 15%)",
+    // "hsl(210, 100%, 10%)",
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 };
@@ -123,12 +132,40 @@ export const reshapeChartData = (data: any[]) => {
   const chartData = data.map((question) => {
     return {
       ...question,
-      fill: generateRandomChartColors(),
+      fill: generateRandomBlueVariantChartColors(),
     };
   });
 
   return chartData;
 };
+
+// a function to convert hsl color to hex color
+export function hslToHex(hsl: string): string {
+  // Extract the H, S, and L values from the input string
+  const hslRegex = /hsl\(\s*(\d+),\s*([\d.]+)%,\s*([\d.]+)%\s*\)/;
+  const result = hslRegex.exec(hsl);
+
+  if (!result) {
+    throw new Error("Invalid HSL color format");
+  }
+
+  const h = parseInt(result[1], 10);
+  const s = parseFloat(result[2]);
+  const l = parseFloat(result[3]);
+
+  // Conversion algorithm
+  const lNorm = l / 100;
+  const a = (s * Math.min(lNorm, 1 - lNorm)) / 100;
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12;
+    const color = lNorm - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0");
+  };
+
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
 
 export async function getLatestSubmissions(formId: number) {
   const form = await getFormWithSubmissions(formId);

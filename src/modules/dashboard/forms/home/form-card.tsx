@@ -1,15 +1,37 @@
 "use client";
 
 import { formatDistance } from "date-fns";
-import { Trash } from "lucide-react";
+import { EllipsisVertical, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { deleteFormAction } from "@/actions/form-actions";
 import { FormType } from "@/backend/database/types";
 import LinkButton from "@/components/animate/link-button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { useConfirm } from "@/hooks/use-confirm";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+
+import {
+  BsFillSendCheckFill,
+  BsSendArrowDown,
+  BsSendCheck,
+} from "react-icons/bs";
+import FormActions from "./form-actions";
 
 type Props = {
   form: FormType;
@@ -45,53 +67,49 @@ const FormCard = ({ form }: Props) => {
 
   return (
     <>
-      <ConfirmDialog />
-      <Card
-        // onClick={onClick}
-        className="shadow-sm rounded-lg relative h-48  cursor-pointer ">
-        <CardHeader className="px-4">
-          <CardTitle className="flex items-center gap-2 justify-between">
-            <div className="text-xs font-normal text-muted-foreground">
-              {formatDistance(form?.createdAt!, new Date(), {
-                addSuffix: true,
-              })}
-            </div>
-            {form.published ? (
-              <div className="">
-                <span className="text-green-500 text-xs w-full">Published</span>
-              </div>
-            ) : (
-              <div className="">
-                <span className="text-red-500 text-xs w-full">Draft</span>
-              </div>
-            )}
-          </CardTitle>
+      {/* <ConfirmDialog /> */}
+      <Card className=" relative h-64 shadow-none flex flex-col justify-between hover:border-gray-300 hover:shadow-sm">
+        <CardHeader className="p-3">
+          <div className="absolute top-2 right-2 z-10">
+            <FormActions data={form} />
+          </div>
         </CardHeader>
-        <CardContent className="h-[32px] text-sm px-4 truncate whitespace-nowrap">
-          <span className=" font-bold">{form.title}</span>
-        </CardContent>
-        <div className="mt-8 px-4 absolute bottom-2 w-full flex items-center justify-between">
-          <div className="">
-            <Trash
-              className="text-red-500 size-4 cursor-pointer"
-              onClick={handleDelete}
-            />
-          </div>
-          <div className=" justify-end ">
-            {form.published ? (
-              <div className="">
-                <LinkButton label="View form" href={`/forms/${form.id}`} />
-              </div>
-            ) : (
-              <div className="">
-                <LinkButton label="Edit form" href={`/editor/${form.id}`} />
-              </div>
-            )}
-          </div>
-        </div>
+        <CardContent
+          onClick={onClick}
+          className="h-full cursor-pointer"></CardContent>
+        <CardFooter className="flex items-center justify-between gap-x-4 ">
+          <Label className="truncate">{form.title}</Label>
+          {form.published ? (
+            <ToolTip text="This form is publish, You can edit it and republish it again">
+              <BsFillSendCheckFill className=" text-green-700" />
+            </ToolTip>
+          ) : (
+            <ToolTip text="This form is drafted">
+              <BsSendArrowDown className=" text-red-700" />
+            </ToolTip>
+          )}
+        </CardFooter>
       </Card>
     </>
   );
 };
 
 export default FormCard;
+
+type ToolTipProps = {
+  text?: string;
+  children: React.ReactNode;
+};
+
+export const ToolTip = ({ text, children }: ToolTipProps) => {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipContent align="end" className="bg-accent border">
+          <p className="text-muted-foreground text-xs max-w-32 ">{text}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+};

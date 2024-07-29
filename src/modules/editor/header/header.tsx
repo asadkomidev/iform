@@ -1,6 +1,6 @@
 "use client";
 
-import { Home } from "lucide-react";
+import { Home, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 
 import { FormType } from "@/backend/database/types";
@@ -23,13 +23,15 @@ const Header = ({ form }: Props) => {
           <Home className="size-4" />
         </Link>
         <div className="truncate">
-          <p className="text-sm text-muted-foreground">{title || form.title}</p>
+          <p className="text-sm text-muted-foreground truncate pr-6">
+            {title || form.title}
+          </p>
         </div>
       </div>
       <div className="flex items-center gap-4">
         <PreviewButton form={form} />
         <SaveButton id={form.id} />
-        <PublishButton id={form.id} />
+        <PublishButton form={form} />
       </div>
     </div>
   );

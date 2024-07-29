@@ -15,7 +15,7 @@ import {
 
 import DetailsSheet from "../../details/details-sheet";
 import CSVDownload from "../utils/csv-download";
-import { getCsvData } from "../../functions/get-csv-data";
+import { getCsvData } from "../../details/functions/get-csv-data";
 
 type Props = {
   multiAnswer: ChartDataType[];

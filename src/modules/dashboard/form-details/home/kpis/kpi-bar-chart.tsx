@@ -41,7 +41,7 @@ export default function KpiBarChart({}: Props) {
 const chartConfig = {
   calories: {
     label: "Calories",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(210, 100%, 70%)",
   },
 } as ChartConfig;
 

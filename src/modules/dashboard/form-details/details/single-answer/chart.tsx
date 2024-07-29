@@ -11,7 +11,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { ChartDataType } from "@/types/response/form";
-import { reshapeChartData } from "../../functions/reshape-chart-data";
+import { reshapeChartData } from "../functions/reshape-chart-data";
 
 type Props = {
   data: ChartDataType[];

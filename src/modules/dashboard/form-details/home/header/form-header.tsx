@@ -12,9 +12,9 @@ type Props = {
 
 const FormHeader = ({ form }: Props) => {
   return (
-    <div className="flex items-center justify-between h-10 py-8 mb-8">
-      <HeaderBreadcrumb data={form} />
-      <div className="flex items-center gap-4">
+    <div className="flex items-center justify-between h-10 py-8 ">
+      {/* <HeaderBreadcrumb data={form} /> */}
+      <div className="flex items-center gap-4 ml-auto">
         <VisitButton url={form.url || ""} />
         <ShareButton url={form.url || ""} />
       </div>

@@ -9,11 +9,11 @@ type Props = {
 
 export default function FormsHeader({ page }: Props) {
   return (
-    <div className=" h-10 flex items-center py-8 mb-8 justify-between ">
-      <div className="w-full">
+    <div className=" h-10 flex items-center py-8 justify-between ">
+      {/* <div className="w-2/3 md:w-full">
         <FormsBreadcrumb />
-      </div>
-      <div className="w-full">
+      </div> */}
+      <div className="w-[230px] ml-auto">
         <Search page={page} />
       </div>
     </div>

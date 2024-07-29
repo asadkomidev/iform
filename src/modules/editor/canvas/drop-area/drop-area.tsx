@@ -19,7 +19,7 @@ const DropArea = ({ form }: Props) => {
   const { open, setOpen } = useOpen();
   const { elements, addElement, removeElement } = useElement();
 
-  const [scope, animate] = useAnimate();
+  // const [scope, animate] = useAnimate();
 
   const droppable = useDroppable({
     id: "main-area",
@@ -28,21 +28,21 @@ const DropArea = ({ form }: Props) => {
     },
   });
 
-  useEffect(() => {
-    if (open) {
-      const slideAnimation = async () => {
-        await animate(scope.current, {
-          x: 0,
-          transition: {
-            duration: 0.3,
-          },
-        });
-      };
+  // useEffect(() => {
+  //   if (open) {
+  //     const slideAnimation = async () => {
+  //       await animate(scope.current, {
+  //         x: 0,
+  //         transition: {
+  //           duration: 0.3,
+  //         },
+  //       });
+  //     };
 
-      slideAnimation();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  //     slideAnimation();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [open]);
 
   useElementDrag({
     elements,
@@ -59,9 +59,9 @@ const DropArea = ({ form }: Props) => {
           droppable.isOver && "ring-1 ring-primary ring-inset",
           open ? "md:ml-28 md:max-w-2xl " : "max-w-3xl mx-auto"
         )}>
-        <motion.div
-          layout
-          ref={scope}
+        <div
+          // layout
+          // ref={scope}
           className=" min-h-[50vh] md:min-h-[65vh]">
           {!droppable.isOver && elements.length === 0 && (
             <div className="flex items-center justify-center w-full min-h-[50vh] ">
@@ -80,7 +80,7 @@ const DropArea = ({ form }: Props) => {
               ))}
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </>
   );

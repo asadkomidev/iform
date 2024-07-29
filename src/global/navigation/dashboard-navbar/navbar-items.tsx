@@ -14,25 +14,24 @@ const NavbarItems = (props: Props) => {
   return (
     <div className="flex items-center gap-4">
       <Link
-        href="/forms"
-        className={cn(
-          "hover:text-primary flex items-center gap-2",
-          pathname === "/forms"
-            ? "text-primary font-semibold"
-            : "text-muted-foreground"
-        )}>
-        <Home className="size-4" />
-        <span className="">Forms</span>
-      </Link>
-      <Link
         href="/overview"
         className={cn(
-          "hover:text-primary ",
+          "hover:text-primary flex items-center gap-2",
           pathname === "/overview"
             ? "text-primary font-semibold"
             : "text-muted-foreground"
         )}>
-        <span className="">Overview</span>{" "}
+        <Home className="size-4" />
+      </Link>
+      <Link
+        href="/forms"
+        className={cn(
+          "hover:text-primary ",
+          pathname === "/forms"
+            ? "text-primary font-semibold"
+            : "text-muted-foreground"
+        )}>
+        <span className="">Forms</span>{" "}
       </Link>
     </div>
   );

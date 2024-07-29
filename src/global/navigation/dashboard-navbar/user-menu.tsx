@@ -25,13 +25,13 @@ const UserMenu = async (props: Props) => {
       <DropdownMenuContent
         align="end"
         className=" w-48 rounded-xl p-4 shadow-xl mt-1">
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className="rounded-lg">
           <Link href="/overview" className="">
             <span>Dashboard</span>
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="">
+        <DropdownMenuItem className="rounded-lg">
           <LogoutLink>Logout</LogoutLink>
         </DropdownMenuItem>
       </DropdownMenuContent>

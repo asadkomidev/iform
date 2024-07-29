@@ -18,20 +18,27 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { FormType } from "@/backend/database/types";
+import useElement from "@/hooks/use-element";
+import { parseFormContent } from "@/modules/dashboard/forms/functions/form-functions";
 
 type Props = {
-  id: number;
+  form: FormType;
 };
 
-const PublishButton = ({ id }: Props) => {
+const PublishButton = ({ form }: Props) => {
   const [loading, startTransition] = useTransition();
   const router = useRouter();
 
+  const { elements } = useElement();
+
+  const content = parseFormContent(form.content);
+
   async function publishForm() {
     try {
-      await publishFormAction(id);
+      await publishFormAction(form.id);
       toast.success("Form published successfully");
-      router.refresh();
+      router.push(`/editor/${form.id}/success`);
     } catch (error) {
       toast.error("Failed to publish form");
     }
@@ -40,11 +47,16 @@ const PublishButton = ({ id }: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="sm" className="flex items-center gap-2">
+        <Button
+          disabled={content.length !== elements.length}
+          size="sm"
+          className="flex items-center gap-2">
           <span className="">
             <Send className="size-3" />
           </span>
-          <span className="hidden md:flex">Publish</span>
+          <span className="hidden md:flex">
+            {form.published ? "Republish" : "Publish"}
+          </span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

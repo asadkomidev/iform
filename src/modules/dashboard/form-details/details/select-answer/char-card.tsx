@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartDataType } from "@/types/response/form";
 import { SelectAnswerChart } from "./chart";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   data: ChartDataType[];
@@ -14,7 +15,7 @@ const SelectAnswerChartCard = ({ data }: Props) => {
       {Object.entries(data).map(([questionTitle, responses], index) => (
         <Card
           key={index}
-          className=" shadow-none"
+          className=" shadow-none border-none"
           style={{ breakAfter: "page" }}>
           <CardHeader>
             <CardTitle>{questionTitle}</CardTitle>

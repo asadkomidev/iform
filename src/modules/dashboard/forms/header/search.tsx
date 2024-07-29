@@ -35,7 +35,7 @@ const Search = ({ page }: Props) => {
         type="text"
         id="Search"
         placeholder="Search for..."
-        className="w-full shadow-none h-9"
+        className="w-full shadow-none h-9 bg-background"
       />
 
       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">

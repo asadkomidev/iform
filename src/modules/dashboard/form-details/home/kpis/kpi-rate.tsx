@@ -24,7 +24,7 @@ export default function KpiRate({ value, title }: Props) {
           config={{
             stand: {
               label: "Stand",
-              color: "hsl(var(--chart-3))",
+              color: "hsl(210, 100%, 70%)",
             },
           }}
           className="mx-auto aspect-square w-full ">

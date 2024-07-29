@@ -18,7 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { QuestionsChartData } from "@/types/response/chart";
-import { reshapeChartData } from "../../functions/reshape-chart-data";
+import { reshapeChartData } from "../../details/functions/reshape-chart-data";
 
 type Props = {
   questionsChartData: QuestionsChartData[];
@@ -82,13 +82,13 @@ export function QuestionsResponsesPieChart({
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold">
-                          {visits}
+                          {data.length}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground">
-                          Visitors
+                          Questions
                         </tspan>
                       </text>
                     );
